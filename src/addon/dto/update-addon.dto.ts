@@ -1,4 +1,4 @@
-import { CreateAddon } from './create-addon.dto';
 import { PartialType } from '@nestjs/mapped-types';
+import { CreateAddonDto } from './create-addon.dto';
 
-export class UpdateAddon extends PartialType(CreateAddon) {}
+export class UpdateAddonDto extends PartialType(CreateAddonDto) {}
