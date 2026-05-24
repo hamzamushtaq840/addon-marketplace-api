@@ -1,6 +1,6 @@
 import { IsUUID } from 'class-validator';
 
-export class GetAddonDto {
+export class AddonParamsDto {
   @IsUUID('all')
   id: string;
 }

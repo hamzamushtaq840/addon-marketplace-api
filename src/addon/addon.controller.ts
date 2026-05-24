@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { AddonService } from './addon.service';
+import { AddonParamsDto } from './dto/addon-params.dto';
 import { CreateAddonDto } from './dto/create-addon.dto';
-import { GetAddonDto } from './dto/get-addon.dto';
 
 @Controller('addons')
 export class AddonController {
@@ -13,7 +13,7 @@ export class AddonController {
   }
 
   @Get(':id')
-  findOne(@Param() params: GetAddonDto) {
+  findOne(@Param() params: AddonParamsDto) {
     return this.addonService.findOne(params);
   }
 
@@ -23,7 +23,7 @@ export class AddonController {
   }
 
   @Delete(':id')
-  remove(@Param() params: GetAddonDto) {
+  remove(@Param() params: AddonParamsDto) {
     return this.addonService.remove(params);
   }
 }
