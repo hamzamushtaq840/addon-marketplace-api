@@ -17,6 +17,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         url: configService.get<string>('DATABASE_URL'),
         autoLoadEntities: true,
         synchronize: true,
+        retryAttempts: 10, // Try 10 times instead of the default 5
+        retryDelay: 5000, // Wait 5 seconds between tries instead of 3
+        keepConnectionAlive: true, // Tell NestJS not to kill the socket on watch-mode reloads
       }),
     }),
   ],
