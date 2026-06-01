@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UUID } from 'crypto';
 import { Repository } from 'typeorm';
-import { AddonParamsDto } from './dto/addon-params.dto';
 import { CreateAddonDto } from './dto/create-addon.dto';
 import { Addon } from './entity/addon.entity';
 
@@ -16,15 +16,20 @@ export class AddonService {
     return this.addonRep.find();
   }
 
-  findOne(params: AddonParamsDto) {
-    return this.addonRep.findOne({ where: { id: params.id } });
+  async findOne(id: UUID) {
+    const addon = await this.addonRep.findOne({ where: { id } });
+    if (!addon) throw new NotFoundException(`Addon with ID ${id} not found`);
+    return addon;
   }
 
   create(createAddonDto: CreateAddonDto): Promise<Addon> {
     return this.addonRep.save(createAddonDto);
   }
 
-  remove(params: AddonParamsDto) {
-    return this.addonRep.delete({ id: params.id });
+  async remove(id: UUID) {
+    const result = await this.addonRep.delete({ id });
+    if (result.affected === 0)
+      throw new NotFoundException(`Addon with ID ${id} not found`);
+    return result;
   }
 }

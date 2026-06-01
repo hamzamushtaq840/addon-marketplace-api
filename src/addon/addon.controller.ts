@@ -1,6 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+} from '@nestjs/common';
+import type { UUID } from 'crypto';
 import { AddonService } from './addon.service';
-import { AddonParamsDto } from './dto/addon-params.dto';
 import { CreateAddonDto } from './dto/create-addon.dto';
 
 @Controller('addons')
@@ -13,8 +21,8 @@ export class AddonController {
   }
 
   @Get(':id')
-  findOne(@Param() params: AddonParamsDto) {
-    return this.addonService.findOne(params);
+  findOne(@Param('id', ParseUUIDPipe) id: UUID) {
+    return this.addonService.findOne(id);
   }
 
   @Post()
@@ -23,7 +31,7 @@ export class AddonController {
   }
 
   @Delete(':id')
-  remove(@Param() params: AddonParamsDto) {
-    return this.addonService.remove(params);
+  remove(@Param('id', ParseUUIDPipe) id: UUID) {
+    return this.addonService.remove(id);
   }
 }
