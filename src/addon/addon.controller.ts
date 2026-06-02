@@ -8,14 +8,17 @@ import {
   ParseUUIDPipe,
   Post,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { Role } from 'src/common/enums/role.enum';
 import { RolesGuard } from 'src/common/guards/roles.guard';
+import { TimerInterceptor } from 'src/common/interceptors/timer.interceptor';
 import { AddonService } from './addon.service';
 import { CreateAddonDto } from './dtos/create-addon.dto';
 
 @Controller('addons')
+@UseInterceptors(TimerInterceptor)
 export class AddonController {
   constructor(private readonly addonService: AddonService) {}
 
