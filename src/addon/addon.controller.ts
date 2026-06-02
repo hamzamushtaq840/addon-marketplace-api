@@ -9,11 +9,11 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { Role } from 'src/common/role.enum';
-import { Roles } from 'src/common/roles.decorator';
-import { RolesGuard } from 'src/common/roles.guard';
+import { Roles } from 'src/common/decorators/roles.decorator';
+import { Role } from 'src/common/enums/role.enum';
+import { RolesGuard } from 'src/common/guards/roles.guard';
 import { AddonService } from './addon.service';
-import { CreateAddonDto } from './dto/create-addon.dto';
+import { CreateAddonDto } from './dtos/create-addon.dto';
 
 @Controller('addons')
 export class AddonController {

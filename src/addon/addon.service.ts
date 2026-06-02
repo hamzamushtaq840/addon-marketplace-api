@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateAddonDto } from './dto/create-addon.dto';
-import { Addon } from './entity/addon.entity';
+import { CreateAddonDto } from './dtos/create-addon.dto';
+import { Addon } from './entities/addon.entity';
 
 @Injectable()
 export class AddonService {

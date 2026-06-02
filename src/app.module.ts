@@ -8,7 +8,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AddonModule } from './addon/addon.module';
 import { DatabaseModule } from './database/database.module';
-import { LoggerMiddleware } from './common/logger.middleware';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
 
 @Module({
   imports: [DatabaseModule, AddonModule],
